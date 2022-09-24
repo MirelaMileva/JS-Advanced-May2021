@@ -1,13 +1,17 @@
 function focused() {
-    let divElement = document.getElementsByTagName('div')[0];
+    let divElements = document.querySelectorAll('div div');
 
-    console.log(divElement);
+    let inputElement = document.querySelector('div input[type="text"]');
 
-    divElement.onfocus = function() {
-        divElement.classList.add('focused');
-    }
-
-    divElement.onblur = function() {
-        divElement.classList.remove('focused');
+    for (const currElement of divElements) {
+        inputElement.addEventListener('focus', (e) => {
+            e.target.parentNode.style.background = '#234465';
+            e.target.parentNode.classList.add('focused');
+        });
+    
+        inputElement.addEventListener('blur', (e) => {
+            e.target.parentNode.style.background = '';
+            e.target.parentNode.classList.remove('focused');
+        })
     }
 }
